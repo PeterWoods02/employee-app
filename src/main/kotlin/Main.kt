@@ -18,25 +18,28 @@ fun main(args: Array<String>) {
 
 fun payslip(){
 
-    println("----------------------------------------------------------------------------")
-    println("|                          Monthly Payslip                                 |")
-    println("|--------------------------------------------------------------------------|")
-    println("|                                                                          |")
-    println("|    Employee Name:  ${firstname.uppercase()} ${surname.uppercase()} (${Gender.uppercase()})        Employee ID:  $employeeId                |")
-    println("|                                                                          |")
-    println("|--------------------------------------------------------------------------|")
-    println("|                                                                          |")
-    println("|     PAYMENT DETAILS                   DEDUCTION DETAILS                  |")
-    println("|                                                                          |")
-    println("|--------------------------------------------------------------------------|")
-    println("|     Salary: ${"%.2f".format(grossSal/12)}                   PAYE: ${"%.2f".format(monthlySal()*(PAYE/100))}                      |")
-    println("|     Bonus:  ${"%.2f".format(bonus/12)}                    PRSI: ${"%.2f".format(monthlySal() * (PRSI / 100))}                       |")
-    println("|                                       Cycle To Work: ${"%.2f".format(cycleWork)}               |")
-    println("|--------------------------------------------------------------------------|")
-    println("|     Gross: ${("%.2f".format((grossSal/12)+(bonus/12)))}                    Total Deductions: ${"%.2f".format(deductions())}          |")
-    println("|--------------------------------------------------------------------------|")
-    println("|                         NET PAY: ${"%.2f".format(netPay())}                                 |")
-    println("----------------------------------------------------------------------------")
+    println(
+        """
+    ----------------------------------------------------------------------------
+    |                          Monthly Payslip                                 |
+    |--------------------------------------------------------------------------|
+    |                                                                          |
+    |    Employee Name:  ${firstname.uppercase()} ${surname.uppercase()} (${Gender.uppercase()})        Employee ID:  $employeeId                |
+    |                                                                          |
+    |--------------------------------------------------------------------------|
+    |                                                                          |
+    |     PAYMENT DETAILS                   DEDUCTION DETAILS                  |
+    |                                                                          |
+    |--------------------------------------------------------------------------|
+    |     Salary: ${"%.2f".format(grossSal/12)}                   PAYE: ${"%.2f".format(monthlySal()*(PAYE/100))}                      |
+    |     Bonus:  ${"%.2f".format(bonus/12)}                    PRSI: ${"%.2f".format(monthlySal() * (PRSI / 100))}                       |
+    |                                       Cycle To Work: ${"%.2f".format(cycleWork)}               |
+    |--------------------------------------------------------------------------|
+    |     Gross: ${("%.2f".format((grossSal/12)+(bonus/12)))}                    Total Deductions: ${"%.2f".format(deductions())}          |
+    |--------------------------------------------------------------------------|
+    |                         NET PAY: ${"%.2f".format(netPay())}                                 |
+    ----------------------------------------------------------------------------
+    """)
 
 
 
