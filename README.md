@@ -1,6 +1,6 @@
 # Employee Application
 
-[![Maven Central](https://img.shields.io/maven-central/v/org.jetbrains.kotlin-wrappers/kotlin-mui-icons)](https://mvnrepository.com/artifact/org.jetbrains.kotlin-wrappers/kotlin-mui-icons)
+[![My Skills](https://skills.thijs.gg/icons?i=kotlin,figma&theme=light)](https://skills.thijs.gg)
 
 
 ## Description
