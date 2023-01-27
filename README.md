@@ -1,6 +1,6 @@
 # Employee Application
 
-[![My Skills](https://skills.thijs.gg/icons?i=kotlin,figma&theme=light)](https://skills.thijs.gg)
+[![My Skills](https://skills.thijs.gg/icons?i=kotlin)](https://skills.thijs.gg)
 
 
 ## Description
