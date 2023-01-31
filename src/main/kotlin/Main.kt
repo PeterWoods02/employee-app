@@ -1,15 +1,6 @@
 import java.lang.Math.round
 
-val firstname = "Joe"
-val surname = "Soap"
-val Gender = "m"
-val employeeId = 6143
-val grossSal = 67543.21
-val PAYE = 38.5
-val PRSI = 5.2
-val bonus = 1450.50
-val cycleWork = 54.33
-
+var employee =  Employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
 
 
 fun main(args: Array<String>) {
@@ -58,7 +49,7 @@ fun getPaySlip(): String {
     |                          Monthly Payslip                                 |
     |--------------------------------------------------------------------------|
     |                                                                          |
-    |    Employee Name:  ${firstname.uppercase()} ${surname.uppercase()} (${Gender.uppercase()})        Employee ID:  $employeeId                |
+    |    Employee Name:  ${getFullName()}        Employee ID:  ${employee.employeeId}               |
     |                                                                          |
     |--------------------------------------------------------------------------|
     |                                                                          |
@@ -66,8 +57,8 @@ fun getPaySlip(): String {
     |                                                                          |
     |--------------------------------------------------------------------------|
     |     Salary: ${"%.2f".format(monthlySal())}                   PAYE: ${"%.2f".format(monthlyPAYE())}                      |
-    |     Bonus:  ${"%.2f".format(bonus/12)}                    PRSI: ${"%.2f".format(monthlyPRSI())}                       |
-    |                                       Cycle To Work: ${"%.2f".format(cycleWork)}               |
+    |     Bonus:  ${"%.2f".format(employee.bonus/12)}                    PRSI: ${"%.2f".format(monthlyPRSI())}                       |
+    |                                       Cycle To Work: ${"%.2f".format(employee.cycleWork)}               |
     |--------------------------------------------------------------------------|
     |     Gross: ${("%.2f".format(monthlyGross()))}                    Total Deductions: ${"%.2f".format(deductions())}          |
     |--------------------------------------------------------------------------|
@@ -77,20 +68,23 @@ fun getPaySlip(): String {
 
 }
 
-fun monthlySal()= grossSal/12
-fun monthlyPRSI() = monthlySal() * (PRSI / 100)
-fun monthlyPAYE() = monthlySal()*(PAYE/100)
-fun monthlyGross() = monthlySal()+(bonus/12)
-fun deductions() = (monthlySal()*(PAYE/100))+(monthlySal() * (PRSI / 100))+(cycleWork)
-fun netPay() = ((grossSal/12)+(bonus/12)) - ((monthlySal()*(PAYE/100))+(monthlySal() * (PRSI / 100))+(cycleWork))
+fun monthlySal()= employee.grossSal/12
+fun monthlyPRSI() = monthlySal() * (employee.PRSI / 100)
+fun monthlyPAYE() = monthlySal()*(employee.PAYE/100)
+fun monthlyGross() = monthlySal()+(employee.bonus/12)
+fun deductions() = (monthlySal()*(employee.PAYE/100))+(monthlySal() * (employee.PRSI / 100))+(employee.cycleWork)
+fun netPay() = ((employee.grossSal/12)+(employee.bonus/12)) - ((monthlySal()*(employee.PAYE/100))+(monthlySal() * (employee.PRSI / 100))+(employee.cycleWork))
 
 
 
 
-fun getFullName() = when(Gender){
-        "m" -> "Mr. $firstname $surname"
-        "f" -> "Mrs. $firstname $surname"
-        else -> "$firstname $surname"}
+fun getFullName() = when(employee.Gender) {
+    'm','M' -> "Mr. ${employee.firstname}  ${employee.surname}"
+    'f','F' -> "Mrs. ${employee.firstname}  ${employee.surname}"
+    else -> "${employee.firstname}  ${employee.surname}"
+}
 
 
 fun roundTwoDecimals(number: Double) = "%.2f".format(number).toDouble()
+
+
