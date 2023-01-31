@@ -1,3 +1,4 @@
+import java.lang.Math.round
 
 val firstname = "Joe"
 val surname = "Soap"
@@ -18,12 +19,12 @@ fun main(args: Array<String>) {
     do {
         input = menu()
         when (input) {
-            1 -> println("Monthly Salary ${(monthlySal())}")
-            2 -> println("Monthly PRSI: ${(monthlyPRSI())}")
-            3 -> println("Monthly PAYE: ${(monthlyPAYE())}")
-            4 -> println("Monthly Gross Pay: ${(monthlyGross())}")
-            5 -> println("Monthly Total Deductions: ${(deductions())}")
-            6 -> println("Monthly Net Pay: ${(netPay())}")
+            1 -> println("Monthly Salary ${roundTwoDecimals(monthlySal())}")
+            2 -> println("Monthly PRSI: ${roundTwoDecimals(monthlyPRSI())}")
+            3 -> println("Monthly PAYE: ${roundTwoDecimals(monthlyPAYE())}")
+            4 -> println("Monthly Gross Pay: ${roundTwoDecimals(monthlyGross())}")
+            5 -> println("Monthly Total Deductions: ${roundTwoDecimals(deductions())}")
+            6 -> println("Monthly Net Pay: ${roundTwoDecimals(netPay())}")
             7 -> println(getPaySlip())
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
@@ -90,3 +91,6 @@ fun getFullName() = when(Gender){
         "m" -> "Mr. $firstname $surname"
         "f" -> "Mrs. $firstname $surname"
         else -> "$firstname $surname"}
+
+
+fun roundTwoDecimals(number: Double) = "%.2f".format(number).toDouble()
