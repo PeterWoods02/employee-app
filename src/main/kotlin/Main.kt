@@ -1,10 +1,13 @@
 import ie.setu.Employee
 import ie.setu.EmployeeAPI
+import mu.KotlinLogging
 import java.lang.Math.round
 var employees = EmployeeAPI()
 
-
+val logger = KotlinLogging.logger{}
 fun main(args: Array<String>) {
+    logger.info { "Launching Employee App" }
+
     start()
 
 }
@@ -54,6 +57,7 @@ fun list(){
 }
 
 fun search() {
+    logger.info { "Searching Through Employee App" }
     val employee = getEmployeeById()
     if (employee == null)
         println("No employee found")
@@ -68,6 +72,7 @@ internal fun getEmployeeById(): Employee? {
 }
 
 fun paySlip(){
+    logger.info { "Generating Payslip" }
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPaySlip())
@@ -76,6 +81,7 @@ fun paySlip(){
 
 
 fun dummyData() {
+    logger.info { "Grabbing Dummy Data" }
     employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
     employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
     employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
