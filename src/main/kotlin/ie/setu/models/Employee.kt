@@ -1,4 +1,4 @@
-package ie.setu
+package ie.setu.models
 
 
 class Employee (var firstname: String, var surname: String, var Gender : Char, var employeeId : Int,

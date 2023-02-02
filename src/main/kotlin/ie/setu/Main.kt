@@ -1,7 +1,8 @@
-import ie.setu.Employee
-import ie.setu.EmployeeAPI
+import ie.setu.models.Employee
+
+import ie.setu.controllers.EmployeeAPI
 import mu.KotlinLogging
-import java.lang.Math.round
+
 var employees = EmployeeAPI()
 
 val logger = KotlinLogging.logger{}
@@ -66,7 +67,7 @@ fun search() {
 }
 
 internal fun getEmployeeById(): Employee? {
-    print("Enter the employee id to search by: ")
+    println("Enter the employee id to search by: ")
     val employeeID = readLine()!!.toInt()
     return employees.findOne(employeeID)
 }
@@ -112,8 +113,10 @@ fun add(){
     val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
 
 
-    employees.create(Employee(firstName,surname,gender,employeeID,grossSalary,
-        payePercentage,prsiPercentage,annualBonus,cycleToWorkMonthlyDeduction))
+    employees.create(
+        Employee(firstName,surname,gender,employeeID,grossSalary,
+        payePercentage,prsiPercentage,annualBonus,cycleToWorkMonthlyDeduction)
+    )
 
     }
 
