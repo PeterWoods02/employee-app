@@ -22,6 +22,7 @@ fun menu(): Int {
         |  2. List All Employees
         |  3. Search Employees
         |  4. Print Payslip for Employee
+        |  5. Delete an Employee
         | -1. Exit
         |
         | Enter Option : """.trimMargin())
@@ -40,6 +41,7 @@ fun start() {
             2 -> list()
             3 -> search()
             4 -> paySlip()
+            5 -> delete()
             -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
@@ -52,6 +54,7 @@ fun start() {
 
 
 fun list(){
+    logger.info { "Listing All Employees Details" }
     employees.findAll()
         .forEach({ println(it)})
 
@@ -83,9 +86,9 @@ fun paySlip(){
 
 fun dummyData() {
     logger.info { "Grabbing Dummy Data" }
-    employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
-    employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
-    employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
+    employees.create(Employee("Joe", "Soap", 'm', 1, 35655.43, 31.0, 7.5, 2000.0, 25.6))
+    employees.create(Employee("Joan", "Murphy", 'f', 2, 54255.13, 32.5, 7.0, 1500.0, 55.3))
+    employees.create(Employee("Mary", "Quinn", 'f', 3, 75685.41, 40.0, 8.5, 4500.0, 0.0))
 }
 
 
@@ -117,7 +120,25 @@ fun add(){
         Employee(firstName,surname,gender,employeeID,grossSalary,
         payePercentage,prsiPercentage,annualBonus,cycleToWorkMonthlyDeduction)
     )
+}
 
+
+fun delete(){
+    // logger.info { "Select Employee ID" }
+    println("Select Employee Id")
+    employees.displayNames()
+val employee = getEmployeeDelById()
+    if (employee != null) {
+        employees.remove(employee)
     }
+}
+
+
+internal fun getEmployeeDelById(): Employee? {
+
+        val employeeID = readLine()!!.toInt()
+        return employees.findOne(employeeID)
+
+}
 
 

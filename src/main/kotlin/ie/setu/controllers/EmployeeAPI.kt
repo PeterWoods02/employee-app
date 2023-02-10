@@ -26,5 +26,21 @@ class EmployeeAPI {
     }
 
 
+    fun remove(employee: Employee) {
+
+        employee.employeeId = getId()
+        employees.remove(employee)
+    }
+
+    fun displayNames() {
+        employees.forEach() ->
+    print("""
+            Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname}
+            Employee Id: ${employees.get(e).employeeId
+            }
+        """.trimIndent())
+
+}
+
 
 }
