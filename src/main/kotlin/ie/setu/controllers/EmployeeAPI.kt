@@ -33,13 +33,20 @@ class EmployeeAPI {
     }
 
     fun displayNames() {
-        employees.forEach() ->
-    print("""
+        var e =0
+       while(e < employees.size) {
+           print(
+               """
+            > -------------------------
             Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname}
-            Employee Id: ${employees.get(e).employeeId
-            }
-        """.trimIndent())
+            Employee Id: ${employees.get(e).employeeId}
+            > -------------------------
+            
+        """.trimIndent()
 
+           )
+           e++;
+       }
 }
 
 

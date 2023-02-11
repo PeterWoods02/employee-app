@@ -17,15 +17,20 @@ fun main(args: Array<String>) {
 
 fun menu(): Int {
     print("""
-        Employee Menu
-        |  1. Add Employee
-        |  2. List All Employees
-        |  3. Search Employees
-        |  4. Print Payslip for Employee
-        |  5. Delete an Employee
-        | -1. Exit
-        |
-        | Enter Option : """.trimMargin())
+      > ----------------------------------
+      > | Employee Menu                  |
+      > ----------------------------------
+      > |  1. Add Employee               |
+      > |  2. List All Employees         |
+      > |  3. Search Employees           |
+      > |  4. Print Payslip for Employee |
+      > |  5. Delete an Employee         |
+      > ----------------------------------
+      > | -1. Exit                       |
+      > ----------------------------------
+      > | Enter Option : 
+      
+      """.trimMargin())
     return readLine()!!.toInt()
 
 
@@ -125,20 +130,20 @@ fun add(){
 
 fun delete(){
     // logger.info { "Select Employee ID" }
-    println("Select Employee Id")
+    println("Select Employee Id you wish to Delete")
+    println("")
     employees.displayNames()
 val employee = getEmployeeDelById()
     if (employee != null) {
         employees.remove(employee)
+        println("${employee.firstname} ${employee.surname} of ID:${employee.employeeId} has been deleted")
     }
 }
 
 
 internal fun getEmployeeDelById(): Employee? {
-
         val employeeID = readLine()!!.toInt()
         return employees.findOne(employeeID)
-
 }
 
 
