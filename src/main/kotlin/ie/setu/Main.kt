@@ -1,12 +1,23 @@
+/*
+Author Peter Woods
+Date 12/02/23
+Description: Main for employee app
+ */
+
+
+
 import ie.setu.models.Employee
 
 import ie.setu.controllers.EmployeeAPI
 import mu.KotlinLogging
+import kotlin.system.exitProcess
 
 var employees = EmployeeAPI()
 
-val logger = KotlinLogging.logger{}//importing logger
-fun main(args: Array<String>) {
+val logger = KotlinLogging.logger{}//importing logger (buggy whe using was printing everywhere and not in order)
+
+
+fun main() {
     logger.info { "Launching Employee App" }
 
     start()
@@ -60,6 +71,9 @@ fun start() {
 
     }
     while(input != -1)
+        exitProcess(1)
+
+
 }
 
 //list all employee details
@@ -104,9 +118,6 @@ fun dummyData() {
     employees.create(Employee("Mary", "Quinn", 'f', 3, 75685.41, 40.0, 8.5, 4500.0, 0.0))
 }
 
-//round off
-fun roundTwoDecimals(number: Double) = "%.2f".format(number).toDouble()
-
 //add employee to arraylist
 fun add(){
     print("Enter first name: ")
@@ -143,8 +154,8 @@ fun delete(){
     employees.displayNames()//displays names and ids only
 val employee = getEmployeeDelById()
     if (employee != null) {
-        employees.remove(employee)
         println("${employee.firstname} ${employee.surname} of ID:${employee.employeeId} has been deleted")
+        employees.remove(employee)
     }
 }
 
@@ -156,15 +167,14 @@ internal fun getEmployeeDelById(): Employee? {
 
 
 //menu for taxrates
-internal fun taxRates(){
+fun taxRates(){
     print(""" 
         Would you like to Update PAYE or PRSI
         1. PAYE
         2. PRSI
         
     """.trimMargin())
-    var PAYORPRS =0
-    PAYORPRS = readLine()!!.toInt()
+    val PAYORPRS = readLine()!!.toInt()
 
 
         do {
@@ -177,6 +187,7 @@ internal fun taxRates(){
             println()
 
             if (PAYORPRS == 1) {
+
                 print(
                     """
                 Updating PAYE
@@ -186,11 +197,10 @@ internal fun taxRates(){
             """.trimIndent()
                 )
                 val employeeID = readLine()!!.toInt()
-                //to exit
-               if(employeeID == -1){
-    start()
-}
-// >= so you can exit with -1
+
+                if(employeeID == -1){
+                    start()
+                }
                 if (employeeID >= 0) {
                     println("${employees.findOne(employeeID)} ")//gets info for one employee only
                     println("")
@@ -199,6 +209,7 @@ internal fun taxRates(){
                     employees.setPAYE(employeeID, payePercentage)//method created to set PAYE
 
                 }
+
             }
 
             else if (PAYORPRS == 2) {
@@ -221,12 +232,10 @@ internal fun taxRates(){
                     println("Enter Value of New PRSI %:")
                     val prsiPercentage = readLine()!!.toDouble()
                     employees.setPRSI(employeeID, prsiPercentage)
-
                 }
+
             }
-            else if(PAYORPRS == -1) {
-               start()
-            }
+
             else{
                 println("Invalid Option")
                 start()//run start when invalid so dosent spam invalid over
@@ -234,7 +243,8 @@ internal fun taxRates(){
 
 
         }
-        while (PAYORPRS != -1)
+
+        while (PAYORPRS != -2)
 
     }
 

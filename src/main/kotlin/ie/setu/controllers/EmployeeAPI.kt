@@ -1,3 +1,9 @@
+/*
+Author Peter Woods
+Date 12/02/23
+Description: Employee API
+ */
+
 package ie.setu.controllers
 
 import ie.setu.models.Employee
@@ -10,12 +16,6 @@ internal fun getId(): Int {
 
 }
 
-//so i can access individualy like gender
-class Employee(
-    var firstName: String,var surname: String,var gender: CharArray,
-    var employeeID: Int,var grossSalary: Double,
-    var payePercentage: Double,var prsiPercentage: Double,
-    var annualBonus: Double,var cycleToWorkMonthlyDeduction: Double)
 
 class EmployeeAPI {
     //creates arraylist
@@ -44,10 +44,6 @@ class EmployeeAPI {
         employees.remove(employee)
     }
 
-    //returns size of array
-    fun size(): Int {
-        return employees.size.toInt()
-    }
 
     //takes in ID and paye and for that id sets new PAYE (USER INPUT)
     fun setPAYE(employeeID: Int, PAYE: Double) {
@@ -73,31 +69,31 @@ class EmployeeAPI {
             print(
                 """
             > -------------------------
-            Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname}
-            Employee Id: ${employees.get(e).employeeId}
+            Employee Name: ${employees[e].firstname} ${employees[e].surname}
+            Employee Id: ${employees[e].employeeId}
             > -------------------------
             
         """.trimIndent()
 
             )
-            e++;
+            e++
         }
     }
 
-    //just name and paye so dosent show unneeded info
+    //just name and paye so doesn't show unneeded info
     fun PAYE() {
         var e = 0
         while (e < employees.size) {
             print(
                 """
-            Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname} of ID:${employees.get(e).employeeId}
-            PAYE: ${employees.get(e).PAYE}
+            Employee Name: ${employees[e].firstname} ${employees[e].surname} of ID:${employees[e].employeeId}
+            PAYE: ${employees[e].PAYE}
             > -------------------------
             
         """.trimIndent()
 
             )
-            e++;
+            e++
 
         }
         println("Enter -1 to exit")
@@ -109,14 +105,14 @@ class EmployeeAPI {
         while (e < employees.size) {
             print(
                 """
-            Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname} of ID:${employees.get(e).employeeId}
-            PAYE: ${employees.get(e).PRSI}
+            Employee Name: ${employees[e].firstname} ${employees[e].surname} of ID:${employees[e].employeeId}
+            PAYE: ${employees[e].PRSI}
             > -------------------------
             
         """.trimIndent()
 
             )
-            e++;
+            e++
 
         }
         println("Enter -1 to exit")
@@ -125,9 +121,9 @@ class EmployeeAPI {
     fun salaryRanges(minSal: Double,maxSal: Double){
         var e = 0
         while (e < employees.size) {
-            if(employees.get(e).grossSal >= minSal && employees.get(e).grossSal <= maxSal){
+            if(employees[e].grossSal in minSal..maxSal){//range checker
                 print("""
-                    ${employees.get(e)}
+                    ${employees[e]}
             
                 """.trimIndent())
             }

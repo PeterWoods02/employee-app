@@ -1,3 +1,10 @@
+/*
+Author Peter Woods
+Date 12/02/23
+Description: Employee storing info on attributes and payslip
+ */
+
+
 package ie.setu.models
 
 
@@ -8,9 +15,9 @@ class Employee (var firstname: String, var surname: String, var Gender : Char, v
 
 
     fun getFullName() = when(Gender) {
-        'm','M' -> "Mr. ${firstname}  ${surname}"
-        'f','F' -> "Mrs. ${firstname}  ${surname}"
-        else -> "${firstname}  ${surname}"
+        'm','M' -> "Mr. $firstname  $surname"
+        'f','F' -> "Mrs. $firstname  $surname"
+        else -> "$firstname  $surname"
     }
     fun monthlySal()= grossSal/12
     fun monthlyPRSI() = monthlySal() * (PRSI / 100)
@@ -40,7 +47,7 @@ class Employee (var firstname: String, var surname: String, var Gender : Char, v
     |--------------------------------------------------------------------------|
     |     Salary: ${"%.2f".format(monthlySal())}                   PAYE: ${"%.2f".format(monthlyPAYE())}                      |
     |     Bonus:  ${"%.2f".format(bonus/12)}                    PRSI: ${"%.2f".format(monthlyPRSI())}                       |
-    |                                       Cycle To Work: ${"%.2f".format(cycleWork)}               |
+    |                                       Cycle To Work: ${"%.2f".format(cycleWork)}                |
     |--------------------------------------------------------------------------|
     |     Gross: ${("%.2f".format(monthlyGross()))}                    Total Deductions: ${"%.2f".format(deductions())}          |
     |--------------------------------------------------------------------------|
