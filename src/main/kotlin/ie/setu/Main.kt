@@ -26,6 +26,7 @@ fun menu(): Int {
       > |  4. Print Payslip for Employee |
       > |  5. Delete an Employee         |
       > |  6. Update Taxes               |
+      > |  7. Display in range (Salary)  |
       > ----------------------------------
       > | -1. Exit                       |
       > ----------------------------------
@@ -50,6 +51,7 @@ fun start() {
             4 -> paySlip()
             5 -> delete()
             6 -> taxRates()
+            7 -> salRange()
             -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
@@ -236,4 +238,13 @@ internal fun taxRates(){
 
     }
 
+fun salRange(){
+    // logger.info { "Select Employee ID" }
+    println("Please enter the two values to search between")
+    val salMin = readLine()!!.toDouble()
+    val salMax = readLine()!!.toDouble()
 
+    employees.salaryRanges(salMin,salMax)
+
+
+        }

@@ -18,7 +18,7 @@ class Employee(
     var annualBonus: Double,var cycleToWorkMonthlyDeduction: Double)
 
 class EmployeeAPI {
-//creates arraylist
+    //creates arraylist
     private val employees = ArrayList<Employee>()
 
     //list all
@@ -37,25 +37,30 @@ class EmployeeAPI {
         employees.add(employee)
     }
 
-//gets id and removes employee object
+    //gets id and removes employee object
     fun remove(employee: Employee) {
 
         employee.employeeId = getId()
         employees.remove(employee)
     }
 
+    //returns size of array
+    fun size(): Int {
+        return employees.size.toInt()
+    }
+
     //takes in ID and paye and for that id sets new PAYE (USER INPUT)
-    fun setPAYE(employeeID: Int,PAYE: Double){
-        for(Employee in employees){
-            if(Employee.employeeId == employeeID){
+    fun setPAYE(employeeID: Int, PAYE: Double) {
+        for (Employee in employees) {
+            if (Employee.employeeId == employeeID) {
                 Employee.PAYE = PAYE
             }
         }
     }
 
-    fun setPRSI(employeeID: Int,PRSI: Double){
-        for(Employee in employees){
-            if(Employee.employeeId == employeeID){
+    fun setPRSI(employeeID: Int, PRSI: Double) {
+        for (Employee in employees) {
+            if (Employee.employeeId == employeeID) {
                 Employee.PRSI = PRSI
             }
         }
@@ -63,10 +68,10 @@ class EmployeeAPI {
 
     //for deleting so dont see all info
     fun displayNames() {
-        var e =0
-       while(e < employees.size) {
-           print(
-               """
+        var e = 0
+        while (e < employees.size) {
+            print(
+                """
             > -------------------------
             Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname}
             Employee Id: ${employees.get(e).employeeId}
@@ -74,15 +79,15 @@ class EmployeeAPI {
             
         """.trimIndent()
 
-           )
-           e++;
-       }
-}
+            )
+            e++;
+        }
+    }
 
-//just name and paye so dosent show unneeded info
-    fun PAYE(){
-        var e =0
-        while(e < employees.size) {
+    //just name and paye so dosent show unneeded info
+    fun PAYE() {
+        var e = 0
+        while (e < employees.size) {
             print(
                 """
             Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname} of ID:${employees.get(e).employeeId}
@@ -99,9 +104,9 @@ class EmployeeAPI {
     }
 
 
-    fun PRSI(){
-        var e =0
-        while(e < employees.size) {
+    fun PRSI() {
+        var e = 0
+        while (e < employees.size) {
             print(
                 """
             Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname} of ID:${employees.get(e).employeeId}
@@ -117,7 +122,22 @@ class EmployeeAPI {
         println("Enter -1 to exit")
     }
 
+    fun salaryRanges(minSal: Double,maxSal: Double){
+        var e = 0
+        while (e < employees.size) {
+            if(employees.get(e).grossSal >= minSal && employees.get(e).grossSal <= maxSal){
+                print("""
+                    ${employees.get(e)}
+            
+                """.trimIndent())
+            }
+            e++
+        }
+
     }
+
+
+}
 
 
 
