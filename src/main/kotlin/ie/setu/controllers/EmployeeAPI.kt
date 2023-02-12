@@ -10,6 +10,7 @@ internal fun getId(): Int {
 
 }
 
+//so i can access individualy like gender
 class Employee(
     var firstName: String,var surname: String,var gender: CharArray,
     var employeeID: Int,var grossSalary: Double,
@@ -17,29 +18,33 @@ class Employee(
     var annualBonus: Double,var cycleToWorkMonthlyDeduction: Double)
 
 class EmployeeAPI {
-
+//creates arraylist
     private val employees = ArrayList<Employee>()
 
+    //list all
     fun findAll(): List<Employee> {
         return employees
     }
 
+    //use employee id passed in main to get single employee
     fun findOne(id: Int): Employee? {
         return employees.find { p -> p.employeeId == id }
     }
 
+    //creating
     fun create(employee: Employee) {
         employee.employeeId = getId()
         employees.add(employee)
     }
 
-
+//gets id and removes employee object
     fun remove(employee: Employee) {
 
         employee.employeeId = getId()
         employees.remove(employee)
     }
 
+    //takes in ID and paye and for that id sets new PAYE (USER INPUT)
     fun setPAYE(employeeID: Int,PAYE: Double){
         for(Employee in employees){
             if(Employee.employeeId == employeeID){
@@ -48,6 +53,15 @@ class EmployeeAPI {
         }
     }
 
+    fun setPRSI(employeeID: Int,PRSI: Double){
+        for(Employee in employees){
+            if(Employee.employeeId == employeeID){
+                Employee.PRSI = PRSI
+            }
+        }
+    }
+
+    //for deleting so dont see all info
     fun displayNames() {
         var e =0
        while(e < employees.size) {
@@ -65,7 +79,7 @@ class EmployeeAPI {
        }
 }
 
-
+//just name and paye so dosent show unneeded info
     fun PAYE(){
         var e =0
         while(e < employees.size) {
@@ -90,18 +104,20 @@ class EmployeeAPI {
         while(e < employees.size) {
             print(
                 """
-            > -------------------------
             Employee Name: ${employees.get(e).firstname} ${employees.get(e).surname} of ID:${employees.get(e).employeeId}
-            PRSI: ${employees.get(e).PRSI}
+            PAYE: ${employees.get(e).PRSI}
             > -------------------------
             
         """.trimIndent()
 
             )
             e++;
+
         }
+        println("Enter -1 to exit")
+    }
 
     }
 
 
-}
+

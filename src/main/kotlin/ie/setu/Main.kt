@@ -5,7 +5,7 @@ import mu.KotlinLogging
 
 var employees = EmployeeAPI()
 
-val logger = KotlinLogging.logger{}
+val logger = KotlinLogging.logger{}//importing logger
 fun main(args: Array<String>) {
     logger.info { "Launching Employee App" }
 
@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
 }
 
 
-
+//main menu
 fun menu(): Int {
     print("""
       > ----------------------------------
@@ -37,6 +37,7 @@ fun menu(): Int {
 
 
 }
+//command for menu
 fun start() {
     var input: Int
 
@@ -59,7 +60,7 @@ fun start() {
     while(input != -1)
 }
 
-
+//list all employee details
 fun list(){
     logger.info { "Listing All Employees Details" }
     employees.findAll()
@@ -67,6 +68,7 @@ fun list(){
 
 }
 
+//search by ID
 fun search() {
     logger.info { "Searching Through Employee App" }
     val employee = getEmployeeById()
@@ -76,12 +78,14 @@ fun search() {
         println(employee)
 }
 
+//input for search to get employee details
 internal fun getEmployeeById(): Employee? {
     println("Enter the employee id to search by: ")
     val employeeID = readLine()!!.toInt()
     return employees.findOne(employeeID)
 }
 
+//generates payslip
 fun paySlip(){
     logger.info { "Generating Payslip" }
     val employee = getEmployeeById()
@@ -90,7 +94,7 @@ fun paySlip(){
 }
 
 
-
+//fake data to use to test with
 fun dummyData() {
     logger.info { "Grabbing Dummy Data" }
     employees.create(Employee("Joe", "Soap", 'm', 1, 35655.43, 31.0, 7.5, 2000.0, 25.6))
@@ -98,10 +102,10 @@ fun dummyData() {
     employees.create(Employee("Mary", "Quinn", 'f', 3, 75685.41, 40.0, 8.5, 4500.0, 0.0))
 }
 
-
+//round off
 fun roundTwoDecimals(number: Double) = "%.2f".format(number).toDouble()
 
-
+//add employee to arraylist
 fun add(){
     print("Enter first name: ")
     val firstName = readLine().toString()
@@ -122,19 +126,19 @@ fun add(){
     print("Enter Cycle to Work Deduction: ")
     val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
 
-
+//creates new employee
     employees.create(
         Employee(firstName,surname,gender,employeeID,grossSalary,
         payePercentage,prsiPercentage,annualBonus,cycleToWorkMonthlyDeduction)
     )
 }
 
-
+//deletes employee
 fun delete(){
     // logger.info { "Select Employee ID" }
     println("Select Employee Id you wish to Delete")
     println("")
-    employees.displayNames()
+    employees.displayNames()//displays names and ids only
 val employee = getEmployeeDelById()
     if (employee != null) {
         employees.remove(employee)
@@ -142,13 +146,14 @@ val employee = getEmployeeDelById()
     }
 }
 
+//gets employee by id for delete
 internal fun getEmployeeDelById(): Employee? {
         val employeeID = readLine()!!.toInt()
         return employees.findOne(employeeID)
 }
 
 
-
+//menu for taxrates
 internal fun taxRates(){
     print(""" 
         Would you like to Update PAYE or PRSI
@@ -179,16 +184,17 @@ internal fun taxRates(){
             """.trimIndent()
                 )
                 val employeeID = readLine()!!.toInt()
-if(employeeID == -1){
+                //to exit
+               if(employeeID == -1){
     start()
 }
-
+// >= so you can exit with -1
                 if (employeeID >= 0) {
-                    println("${employees.findOne(employeeID)} ")
+                    println("${employees.findOne(employeeID)} ")//gets info for one employee only
                     println("")
                     println("Enter Value of New PAYE %:")
                     val payePercentage = readLine()!!.toDouble()
-                    employees.setPAYE(employeeID, payePercentage)
+                    employees.setPAYE(employeeID, payePercentage)//method created to set PAYE
 
                 }
             }
@@ -196,29 +202,32 @@ if(employeeID == -1){
             else if (PAYORPRS == 2) {
                 print(
                     """
-                Updating PAYE
+                Updating PRSI
                 ------------------------------
-                Select Id of who you want to change their PAYE:
+                Select Id of who you want to change their PRSI:
                 
             """.trimIndent()
                 )
                 val employeeID = readLine()!!.toInt()
+                if(employeeID == -1){
+                    start()
+                }
 
-
-                if (employeeID != null) {
+                if (employeeID >= 0) {
                     println("${employees.findOne(employeeID)} ")
                     println("")
-                    println("Enter Value of New PAYE %:")
-                    val payePercentage = readLine()!!.toDouble()
-                    employees.setPAYE(employeeID, payePercentage)
+                    println("Enter Value of New PRSI %:")
+                    val prsiPercentage = readLine()!!.toDouble()
+                    employees.setPRSI(employeeID, prsiPercentage)
 
                 }
             }
             else if(PAYORPRS == -1) {
-               menu()
+               start()
             }
             else{
                 println("Invalid Option")
+                start()//run start when invalid so dosent spam invalid over
             }
 
 
@@ -227,9 +236,4 @@ if(employeeID == -1){
 
     }
 
-
-internal fun getEmployeeTaxID(): Employee? {
-    val employeeID = readLine()!!.toInt()
-    return employees.findOne(employeeID)
-}
 
