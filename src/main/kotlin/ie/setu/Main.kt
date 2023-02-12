@@ -25,6 +25,7 @@ fun menu(): Int {
       > |  3. Search Employees           |
       > |  4. Print Payslip for Employee |
       > |  5. Delete an Employee         |
+      > |  6. Update Taxes               |
       > ----------------------------------
       > | -1. Exit                       |
       > ----------------------------------
@@ -47,6 +48,7 @@ fun start() {
             3 -> search()
             4 -> paySlip()
             5 -> delete()
+            6 -> taxRates()
             -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
@@ -140,10 +142,94 @@ val employee = getEmployeeDelById()
     }
 }
 
-
 internal fun getEmployeeDelById(): Employee? {
         val employeeID = readLine()!!.toInt()
         return employees.findOne(employeeID)
 }
 
+
+
+internal fun taxRates(){
+    print(""" 
+        Would you like to Update PAYE or PRSI
+        1. PAYE
+        2. PRSI
+        
+    """.trimMargin())
+    var PAYORPRS =0
+    PAYORPRS = readLine()!!.toInt()
+
+
+        do {
+            when (PAYORPRS) {
+                1 -> employees.PAYE()
+                2 -> employees.PRSI()
+                -1 -> start()
+                else -> println("Invalid Option")
+            }
+            println()
+
+            if (PAYORPRS == 1) {
+                print(
+                    """
+                Updating PAYE
+                ------------------------------
+                Select Id of who you want to change their PAYE:
+                
+            """.trimIndent()
+                )
+                val employeeID = readLine()!!.toInt()
+if(employeeID == -1){
+    start()
+}
+
+                if (employeeID >= 0) {
+                    println("${employees.findOne(employeeID)} ")
+                    println("")
+                    println("Enter Value of New PAYE %:")
+                    val payePercentage = readLine()!!.toDouble()
+                    employees.setPAYE(employeeID, payePercentage)
+
+                }
+            }
+
+            else if (PAYORPRS == 2) {
+                print(
+                    """
+                Updating PAYE
+                ------------------------------
+                Select Id of who you want to change their PAYE:
+                
+            """.trimIndent()
+                )
+                val employeeID = readLine()!!.toInt()
+
+
+                if (employeeID != null) {
+                    println("${employees.findOne(employeeID)} ")
+                    println("")
+                    println("Enter Value of New PAYE %:")
+                    val payePercentage = readLine()!!.toDouble()
+                    employees.setPAYE(employeeID, payePercentage)
+
+                }
+            }
+            else if(PAYORPRS == -1) {
+               menu()
+            }
+            else{
+                println("Invalid Option")
+            }
+
+
+        }
+        while (PAYORPRS != -1)
+
+    }
+
+
+internal fun getEmployeeTaxID(): Employee? {
+    val employeeID = readLine()!!.toInt()
+    return employees.findOne(employeeID)
+}
 
